@@ -195,7 +195,7 @@ class Shortntweet {
 	function _do_shorten_url_bitly($orig_url) 
 	{
 		$longurl = rawurlencode($orig_url);
-		$shorturl = $this->bitly_url.'version='.$this->bitly_version.'&longUrl='.$longurl.'&login='.$this->bitly_login.'&apiKey='.$this->bitly_apikey.'&format=json&history=1';
+		$shorturl = $this->bitly_url.'version='.$this->bitly_version.'&longUrl='.$longurl.'&login='.trim($this->bitly_login).'&apiKey='.$this->bitly_apikey.'&format=json&history=1';
 		
 		//using curl
 		$ccc = curl_init();
