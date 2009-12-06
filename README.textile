@@ -4,7 +4,7 @@ Create a "Tweet This" link and optionally use bit.ly or is.gd to shorten the cur
 
 h2. Info
 
-Originally Developed by "Eric Barnes (Eric Barnes) ":http://ericlbarnes.com.
+Originally Developed by "Eric Barnes (Eric Barnes)":http://ericlbarnes.com.
 General EE Plugin Info: http://expressionengine.com/docs/development/plugins.html
 Bitly addition by: Masuga Design
 
