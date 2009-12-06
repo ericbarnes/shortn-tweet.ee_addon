@@ -4,12 +4,13 @@ Create a "Tweet This" link and optionally use bit.ly or is.gd to shorten the cur
 
 h2. Info
 
-Originally Developed by Eric Barnes.
+Originally Developed by "Eric Barnes (Eric Barnes) ":http://ericlbarnes.com
 General EE Plugin Info: http://expressionengine.com/docs/development/plugins.html
+Bitly addition by: Masuga Design
 
 <pre>
 {exp:shortn_tweet title="{title}" url="{url_title_path=weblog/item}" short_url="bit.ly"}
-  &lt;li&gt;&lt;a href="{twt:twitter_url}{twt:title} {twt:title_url}">Tweet this thang&lt;/a&gt;&lt;/li&gt;
+  <a href="{twt:twitter_url}{twt:title} {twt:title_url}">Tweet this</a>
 {/exp:shortn_tweet}
 </pre>
 
