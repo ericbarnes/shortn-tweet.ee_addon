@@ -4,14 +4,18 @@ Create a "Tweet This" link and optionally use bit.ly or is.gd to shorten the cur
 
 h2. Info
 
-Originally Developed by "Eric Barnes (Eric Barnes)":http://ericlbarnes.com.
-General EE Plugin Info: http://expressionengine.com/docs/development/plugins.html
-Bitly addition by: Masuga Design
+* Originally Developed by Eric Barnes: http://ericlbarnes.com
+* General EE Plugin Info: http://expressionengine.com/docs/development/plugins.html
+* Bitly addition by: Masuga Design
+
+h2. Instructions
+
+Upload the "shortntweet" folder to your third-party directory. 
 
 <pre>
-{exp:shortn_tweet title="{title}" url="{url_title_path=weblog/item}" short_url="bit.ly"}
+{exp:shortntweet title="{title}" url="{url_title_path=weblog/item}" short_url="bit.ly"}
   <a href="{twt:twitter_url}{twt:title} {twt:title_url}">Tweet this</a>
-{/exp:shortn_tweet}
+{/exp:shortntweet}
 </pre>
 
 Remember that if you are using bit.ly as your URL shortener that you will need an account. You will then have to add your username and bit.ly API key to the top of the plugin:
@@ -21,7 +25,7 @@ Remember that if you are using bit.ly as your URL shortener that you will need a
 	var $bitly_apikey = 'R_01234567890abcdefghijklmnopqrstu'; // enter your key here
 </pre>
 
-h2. Changelog
+h2. Change Log
 
 *v2.0 (December 6, 2009)*
 

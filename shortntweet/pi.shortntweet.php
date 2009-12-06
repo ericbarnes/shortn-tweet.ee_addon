@@ -229,7 +229,7 @@ class Shortntweet {
 		http://expressionengine.com/forums/viewthread/115527/
 		------------------
 		
-		{exp:shortn_tweet title="{title}" url="{title_permalink=blog/entry}"}
+		{exp:shortntweet title="{title}" url="{title_permalink=blog/entry}"}
 		
 		or 
 		
