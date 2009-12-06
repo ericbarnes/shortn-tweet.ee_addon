@@ -53,22 +53,19 @@ class Shortntweet {
 
 		if ($short_url != '') 
 		{
-			switch ($short_url) 
+			if ($short_url == 'bit.ly') 
 			{
-				case "is.gd":
-					$title_url = $this->do_shorten_url_isgd($title_url);
-				break;
-				case "bit.ly":
-					$title_url = $this->do_shorten_url_bitly($title_url);
-				break;
-				default:
-					$title_url = $this->do_shorten_url_isgd($title_url);
+				$title_url = $this->_do_shorten_url_bitly($title_url);
+			}
+			else
+			{
+				$title_url = $this->_do_shorten_url_isgd($title_url);
 			}
 		}
 		
 		// Format Title //
 		$title = $this->EE->TMPL->fetch_param('title');
-		$title = $this->dot($title, 70, '...');
+		$title = $this->_dot($title, 70, '...');
 		$title = $this->_convert_chars($title);
 		
 		$link_title = $this->EE->TMPL->fetch_param('link_title');
@@ -77,7 +74,6 @@ class Shortntweet {
 		$twitter_full_url = 'http://twitter.com/home?status='.$title.' '.$title_url;
 		
 		// Now return it //
-		//$return_data = "<b>".$str."</b>";
 		if ($tagdata != '')
 		{
 			$f = array(LD.'twt:title'.RD, LD.'twt:title_url'.RD, LD.'twt:twitter_url'.RD, LD.'twt:twitter_full_url'.RD);
@@ -118,7 +114,7 @@ class Shortntweet {
 	* @param	string $dots the suffix
 	* @return	string
 	*/
-	function dot($str, $len, $dots = "...") 
+	function _dot($str, $len, $dots = "...") 
 	{
 		if (strlen($str) > $len) 
 		{
@@ -138,7 +134,7 @@ class Shortntweet {
 	* @param $string
 	* @return string
 	*/
-	function do_curl_request($url, $variable, $value) 
+	function _do_curl_request($url, $variable, $value) 
 	{
 		$api = $url."?".$variable."=".$value;
 		$session = curl_init();
@@ -158,11 +154,11 @@ class Shortntweet {
 	* @return string 
 	* @uses do_curl_request
 	*/
-	function do_shorten_url_isgd($longurl) 
+	function _do_shorten_url_isgd($longurl) 
 	{
 		$url = "http://is.gd/api.php";
 		$variable = "longurl";
-		$shorturl = $this->do_curl_request($url, $variable, $longurl);
+		$shorturl = $this->_do_curl_request($url, $variable, $longurl);
 		return $shorturl;
 	}
 	
@@ -196,7 +192,7 @@ class Shortntweet {
 	*  }
 	*
 	*/
-	function do_shorten_url_bitly($orig_url) 
+	function _do_shorten_url_bitly($orig_url) 
 	{
 		$longurl = rawurlencode($orig_url);
 		$shorturl = $this->bitly_url.'version='.$this->bitly_version.'&longUrl='.$longurl.'&login='.$this->bitly_login.'&apiKey='.$this->bitly_apikey.'&format=json&history=1';
