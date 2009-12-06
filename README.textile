@@ -20,14 +20,18 @@ Remember that if you are using bit.ly as your URL shortener that you will need a
 
 h2. Changelog
 
-*1.2 (October 2, 2009)*
+*v2.0 (December 6, 2009)*
+
+* Upgraded to work with EE 2.0 
+
+*v1.2 (October 2, 2009)*
 
 * Changed name, re-released as new thing
 
-1.1
+*v1.1*
 
 * Added support for changing link title.
 
-1.0
+*v1.0*
 
 * First Release
