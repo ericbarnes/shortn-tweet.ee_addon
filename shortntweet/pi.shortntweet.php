@@ -27,8 +27,8 @@
  */
 class Shortntweet {
 	
-	var $bitly_login = 'YOURBITLYLOGIN'; // enter your bit.ly login here
-	var $bitly_apikey = 'R_01234567890abcdefghijklmnopqrstu'; // enter your key here
+	var $bitly_login = ''; // enter your bit.ly login here
+	var $bitly_apikey = ''; // enter your key here
 	var $bitly_version = '2.0.1'; 
 	var $bitly_url = 'http://api.bit.ly/shorten?';
 	var $return_data = "";
@@ -83,7 +83,7 @@ class Shortntweet {
 		}
 		else 
 		{
-			$this->return_data = "<li><a href=\"http://twitter.com/home?status=$title $title_url\" title=\"Click to send this page to Twitter!\" target=\"_blank\"><img src=\"/images/site/icon_share_twitter.png\" alt=\"Twitter\" />Tweet This</a>";		  
+			$this->return_data = "<a href=\"http://twitter.com/home?status=$title $title_url\" title=\"Click to send this page to Twitter!\" target=\"_blank\"><img src=\"/images/site/icon_share_twitter.png\" alt=\"Twitter\" />Tweet This</a>";
 		}
 		
 
@@ -134,11 +134,10 @@ class Shortntweet {
 	* @param $string
 	* @return string
 	*/
-	function _do_curl_request($url, $variable, $value) 
+	function _do_curl_request($url) 
 	{
-		$api = $url."?".$variable."=".$value;
 		$session = curl_init();
-		curl_setopt($session, CURLOPT_URL, $api);
+		curl_setopt($session, CURLOPT_URL, $url);
 		curl_setopt($session, CURLOPT_RETURNTRANSFER, 1);
 		$data = curl_exec($session);
 		curl_close($session);
@@ -156,9 +155,8 @@ class Shortntweet {
 	*/
 	function _do_shorten_url_isgd($longurl) 
 	{
-		$url = "http://is.gd/api.php";
-		$variable = "longurl";
-		$shorturl = $this->_do_curl_request($url, $variable, $longurl);
+		$url = "http://is.gd/api.php?longurl=".$longurl;
+		$shorturl = $this->_do_curl_request($url);
 		return $shorturl;
 	}
 	
@@ -195,19 +193,19 @@ class Shortntweet {
 	function _do_shorten_url_bitly($orig_url) 
 	{
 		$longurl = rawurlencode($orig_url);
-		$shorturl = $this->bitly_url.'version='.$this->bitly_version.'&longUrl='.$longurl.'&login='.trim($this->bitly_login).'&apiKey='.$this->bitly_apikey.'&format=json&history=1';
-		
-		//using curl
-		$ccc = curl_init();
-		curl_setopt($ccc,CURLOPT_URL,$shorturl);
-		curl_setopt($ccc,CURLOPT_RETURNTRANSFER,true);
-		curl_setopt($ccc,CURLOPT_HEADER,false);
-		$response = curl_exec($ccc);
-		curl_close($ccc);
+		$shorturl = $this->bitly_url.'version='.$this->bitly_version.'&longUrl='.$longurl.'&login='.$this->bitly_login.'&apiKey='.$this->bitly_apikey.'&format=json&history=1';
+		$response = $this->_do_curl_request($shorturl);
 		
 		//decode JSON
 		$json = @json_decode($response,true);
-		return $json['results'][$orig_url]['shortUrl'];
+		if ($json['statusCode'] == 'ERROR')
+		{
+			die('Short \'n Tweet error: '. $json['errorMessage']);
+		}
+		else
+		{
+			return $json['results'][$orig_url]['shortUrl'];
+		}
 	}
 
 	// --------------------------------------------------------------------
