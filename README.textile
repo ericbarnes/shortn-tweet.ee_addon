@@ -25,7 +25,17 @@ Remember that if you are using bit.ly as your URL shortener that you will need a
 	var $bitly_apikey = 'R_01234567890abcdefghijklmnopqrstu'; // enter your key here
 </pre>
 
+h2. Requirements
+
+* PHP Curl Support
+* json_decode for bit.ly
+
+
 h2. Change Log
+
+*v2.1 (December 09, 2009)*
+
+* Added checks for required php setup.
 
 *v2.0 (December 6, 2009)*
 

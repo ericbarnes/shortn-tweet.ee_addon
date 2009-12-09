@@ -197,10 +197,14 @@ class Shortntweet {
 		$response = $this->_do_curl_request($shorturl);
 		
 		//decode JSON
+		if( ! function_exists('json_decode') ) 
+		{
+			die("Short 'n Tweet error: <a href='http://php.net/manual/en/function.json-decode.php'>json_decode</a> required for bit.ly");
+		}	
 		$json = @json_decode($response,true);
 		if ($json['statusCode'] == 'ERROR')
 		{
-			die('Short \'n Tweet error: '. $json['errorMessage']);
+			die("Short 'n Tweet error: ". $json['errorMessage']);
 		}
 		else
 		{
