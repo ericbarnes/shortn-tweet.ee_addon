@@ -2,7 +2,7 @@
 
 	$plugin_info = array(
 		'pi_name'        => "Short 'n Tweet",
-		'pi_version'     => '2.0',
+		'pi_version'     => '2.0.1',
 		'pi_author'      => 'Eric Barnes',
 		'pi_author_url'  => 'http://ericlbarnes.com/',
 		'pi_description' => 'Allows users to tweet blog entries',

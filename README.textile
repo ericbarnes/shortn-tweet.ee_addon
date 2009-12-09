@@ -33,7 +33,7 @@ h2. Requirements
 
 h2. Change Log
 
-*v2.1 (December 09, 2009)*
+*v2.0.1 (December 09, 2009)*
 
 * Added checks for required php setup.
 
